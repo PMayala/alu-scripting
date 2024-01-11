@@ -8,7 +8,7 @@ else
   input_string = ARGV[0]
 
   # Define the regular expression pattern using Oniguruma syntax
-  regex_pattern = /hbt*n/
+  regex_pattern = /hb(t*n|n)/
 
   # Match the input against the regular expression
   if input_string.match?(regex_pattern)
