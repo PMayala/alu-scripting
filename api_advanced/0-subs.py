@@ -3,23 +3,15 @@
 
 import requests
 
+
 def number_of_subscribers(subreddit):
     """function that fetches number_of_subscribers"""
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"}
+    URL = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    HEADERS = {"User-Agent": "PostmanRuntime/7.35.0"}
 
     try:
-        response = requests.get(url, headers=headers, allow_redirects=False)
-        if response.status_code == 200:
-            subscribers = response.json().get("data").get("subscribers")
-            print(f"OK\n{subscribers}")
-        else:
-            print("OK\n0")
-    except requests.exceptions.RequestException as e:
-        print("OK\n0")
-        print(f"Error: {e}")
+        RESPONSE = requests.get(URL, headers=HEADERS, allow_redirects=False)
+        return RESPONSE.json().get("data").get("subscribers")
 
-# Test cases
-if __name__ == "__main__":
-    number_of_subscribers("programming")
-    number_of_subscribers("this_is_a_fake_subreddit")
+    except Exception:
+        return 0
